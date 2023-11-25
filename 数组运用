@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main() {
+    // 定义变量
+    float c1, c2, c3, c4;
+    int numStudents;
+
+    // 设置各项成绩的权重
+    c1 = 0.25;
+    c2 = 0.25;
+    c3 = 0.25;
+    c4 = 0.25;
+
+    // 获取班级学生人数
+    printf("请输入班级学生人数：");
+    scanf("%d", &numStudents);
+
+    // 定义二维数组存储学生各项成绩
+    int grades[numStudents][4]; // 每个学生有4门课程
+    float totalScore = 0;
+
+    // 输入各项成绩
+    for (int i = 0; i < numStudents; i++) {
+        printf("请输入第%d个学生的考勤、课堂表现、实验、期末考成绩（用空格分隔）：", i+1);
+        scanf("%d %d %d %d", &grades[i][0], &grades[i][1], &grades[i][2], &grades[i][3]);
+    }
+
+    // 计算学生的综合成绩并输出
+    for (int i = 0; i < numStudents; i++) {
+        float score = grades[i][0] * c1 + grades[i][1] * c2 + grades[i][2] * c3 + grades[i][3] * c4;
+        totalScore += score;
+        printf("第%d个学生的综合成绩为：%f\n", i+1, score);
+
+        // 根据综合成绩输出对应的等级
+        if (score >= 90)
+            printf("优秀\n");
+        else if (score >= 80)
+            printf("良好\n");
+        else if (score >= 70)
+            printf("中等\n");
+        else if (score >= 60)
+            printf("及格\n");
+        else
+            printf("不及格\n");
+    }
+
+    // 计算班级的总分和平均分
+    float averageScore = totalScore / numStudents;
+    printf("班级的总分为：%f\n", totalScore);
+    printf("班级的平均分为：%f\n", averageScore);
+
+    return 0;
+}
